@@ -1,24 +1,7 @@
 # vue-talana-alfredo
 
-## Project setup
-```
-npm install
-```
+Esta aplicación fue creada con la última version de VueJS
+fue realizada hasta donde dio el tiempo la mayoria de las cosas funcionan
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+aca les dejo el link de la app en producción:
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
