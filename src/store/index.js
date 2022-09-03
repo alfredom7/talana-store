@@ -14,7 +14,7 @@ export default createStore({
 
     loadCategories ({ state }) {
 
-      axios.get('http://sva.talana.com:8000/api/product-category/?format=json')
+      axios.get('https://fakestoreapi.com/products/categories')
       .then((response) => {
           state.categories=response.data;
 
@@ -27,7 +27,7 @@ export default createStore({
     
     loadProducts ({ state }) {
 
-      axios.get('http://sva.talana.com:8000/api/product/?format=json')
+      axios.get('https://fakestoreapi.com/products')
       .then((response) => {
           state.products=response.data;
           console.log(response.data);
@@ -38,7 +38,7 @@ export default createStore({
     },
 
     selCategory({commit, state}, categoria) {
-      state.categoria=categoria.category;
+      state.categoria=categoria;
     },
 
     addCart({commit, state}, product) {

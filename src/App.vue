@@ -1,13 +1,15 @@
 <template>
-  <div class="row h-100">
+  <div class="principal-container">
     <div class="col-12">
       <Header></Header>
     </div>
-    <div class="col-md-3">
-      <Sidebar></Sidebar>
-    </div>
-    <div class="col-md-8">
-          <Category></Category>
+    <div class="secondary-container container">
+      <aside class="search-sidebar">
+        <Sidebar></Sidebar>
+      </aside>
+      <section class="search-results">
+            <Category></Category>
+      </section>
     </div>
   </div>
 </template>
@@ -25,4 +27,38 @@ export default {
   }
 }
 </script>
+<style>
+  .principal-container{
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    overflow: visible;
+    display: flex;
+    width: 100%;
+  }
+  .secondary-container{
+    width: 100%;
+    margin-top: 0;
+    display: flex;
+  }
+  .search-sidebar{
+    -webkit-flex: 1 1;
+    flex: 1 1;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    max-width: 294px;
+    min-width: 210px;
+    padding-right: 14px;
+    width: 100%;
+  }
+  .search-results {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    width: 885px;
+  }
+  
 
+</style>
