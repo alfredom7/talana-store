@@ -44,6 +44,10 @@
       "no-unused-vars": "off"
     }
   },
+    "engines": {
+    "node": "16.17.0",
+    "npm": "8.15.0"
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
