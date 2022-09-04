@@ -3,19 +3,25 @@ import axios from 'axios'
 
 export default createStore({
   state: {
+    loadingProducts: false,
+    loadingCategories: false,
+    loadingProduct: false,
     categories: [],
     categoria: null,
     products: [],
     allProducts: [],
+    product: null,
     cart: []
   },
   mutations: {
   },
   actions: {
     loadCategories ({ state }) {
+      state.loadingCategories = true;
       axios.get('https://fakestoreapi.com/products/categories')
       .then((response) => {
         state.categories=response.data;
+        state.loadingCategories = false;
       })
       .catch((error) => {
         console.log(error);
@@ -23,20 +29,36 @@ export default createStore({
     },
 
     loadProducts ({ state }) {
+      state.loadingProducts = true;
       axios.get('https://fakestoreapi.com/products')
       .then((response) => {
         state.products=response.data;
         state.allProducts=response.data;
+        state.loadingProducts = false;
       })
       .catch((error) => {
         console.log(error);
       })
     },
-
+    
+    loadProduct ({ state }, id) {
+      state.loadingProduct = true;
+      axios.get('https://fakestoreapi.com/products/'+id)
+      .then((response) => {
+        console.log(response);
+        state.product=response.data;
+        this.dispatch('selCategory', state.product.category)
+        state.loadingProduct = false;
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    },
+    
     selCategory({commit, state}, categoria) {
       state.categoria=categoria;
     },
-
+    
     addCart({commit, state}, product) {
       let producto = state.cart.find(el => el.id == product.product.id);
       if(producto){
@@ -46,7 +68,7 @@ export default createStore({
         product.product.count=1;
       }
     },
-
+    
     searchProducts({commit, state}, search) {
       if(!search || search == '') {
         state.products = state.allProducts;

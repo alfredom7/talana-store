@@ -3,11 +3,12 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Alfredo Store</a>
+    <router-link :to="{ name: 'Category' }" class="navbar-brand">
+      <img src="/shop.png" style="width: 30px; height: 30px;" class="me-1" /> Alfredo Store</router-link>
     <form class="d-flex">
-        <input v-model="search" class="form-control me-1" type="search" placeholder="Buscar..." aria-label="Search">
+        <input v-model="search" class="form-control me-1 searchInput" type="search" placeholder="Buscar..." aria-label="Search">
         <!--<button class="btn btn-light" type="submit">Buscar</button>-->
-        <button type="button" class="btn btn-danger position-relative ms-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button type="button" class="btn btn-light position-relative ms-1 cartbtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
           <i class="fas fa-shopping-cart"></i>
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             {{cart.length}}
@@ -39,7 +40,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-danger">Ir a pagar</button>
+        <button type="button" class="btn btn-danger btnbuymodal">Comprar ahora</button>
       </div>
     </div>
   </div>
@@ -81,11 +82,37 @@ nav.main-navbar{
   z-index: 9999;
   top: 0;
   height: 70px;
-  min-width: 440px;
 }
 .imagecartpro{
   width: 80px;
   height: 80px;
   margin: auto 0;
+}
+.cartbtn{
+  display: flex;
+  border: none !important;
+}
+.btnbuymodal {
+	float: right;
+	background-color: #470076 !important;
+  border: none  !important;;
+  color: #ffffff;
+  height: 40px;
+}
+.btnbuymodal:hover{
+    background-color: #7300bf !important;
+}
+.searchInput{
+  border: none !important;
+}
+@media(max-width: 500px){
+  .searchInput{
+    width: 140px !important;
+  }
+}
+@media(max-width: 420px){
+  .searchInput{
+    width: 100px !important;
+  }
 }
 </style>
