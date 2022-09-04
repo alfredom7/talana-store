@@ -1,17 +1,19 @@
 <template>
 	<div class="p-3">
-		<h3 class="my-3" v-if="categoria">Categoria {{categoria}}</h3>
+		<h5 class="my-3" v-if="categoria">Categoria {{categoria}}</h5>
 		<div class="list-group">
 			<a v-for="pro in products" v-bind:key="pro.id" href="#" class="list-group-item list-group-item-action"
 				aria-current="true">
-				<div class="d-flex w-100">
-					<img :src="pro.image" class="card-img-top imgpro me-3" alt="Imagen producto" />
-					<div class="w-100">
+				<div class="row">
+					<div class="col-sm-12 col-md-3">
+						<img :src="pro.image" class="card-img-top imgpro" alt="Imagen producto" />
+					</div>
+					<div class="col-sm-12 col-md-9">
 						<h5 class="mb-2 titlepro">{{pro.title}}</h5>
 						<p class="categorypro">{{pro.category.toUpperCase()}}</p>
 						<small class="pricepro mb-2">$ {{pro.price}}</small>
 						<span class="badge bg-success deliverypro">Llega gratis el lunes</span>
-						<button type="button" class="btn btn-success addcartbtnpro" v-on:click="addToCart(pro)"><i
+						<button type="button" class="btn btn-danger addcartbtnpro" v-on:click="addToCart(pro)"><i
 								class="fas fa-cart-plus"></i>
 						</button>
 					</div>

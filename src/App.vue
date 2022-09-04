@@ -1,15 +1,15 @@
 <template>
-  <div class="principal-container">
-    <div class="col-12">
-      <Header></Header>
-    </div>
-    <div class="secondary-container container">
-      <aside class="search-sidebar">
+  <div class="w-100">
+    <Header></Header>
+  </div>
+  <div class="container mt-5 pt-4" style="min-width: 440px;">
+    <div class="row">
+      <div class="col-sm-12 col-md-3">
         <Sidebar></Sidebar>
-      </aside>
-      <section class="search-results">
-            <Category></Category>
-      </section>
+      </div>
+      <div class="col-sm-12 col-md-9">
+        <Category></Category>
+      </div>
     </div>
   </div>
 </template>
@@ -17,7 +17,6 @@
 import Header from '@/components/Header.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import Category from '@/components/Category.vue'
-
 export default {
   name: 'Home',
   components: {
@@ -59,6 +58,4 @@ export default {
     flex-direction: column;
     width: 885px;
   }
-  
-
 </style>
