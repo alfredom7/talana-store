@@ -56,7 +56,7 @@ export default createStore({
     },
 
     async loadPromoProduct({ state }) {
-      await axios.get('https://fakestoreapi.com/products/'+Math.floor(Math.random()*(19-0+1)+0))
+      await axios.get('https://fakestoreapi.com/products/'+Math.floor(Math.random()*(20-1+1)+1))
       .then((response) => {
         if(state.promotionalProducts.length >= 3) state.promotionalProducts = [];
         state.promotionalProducts.push(response.data);
