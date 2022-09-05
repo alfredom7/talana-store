@@ -89,8 +89,11 @@ nav.main-navbar{
   margin: auto 0;
 }
 .cartbtn{
-  display: flex;
   border: none !important;
+}
+.cartbtn i{
+  border: none !important;
+  margin: 0 auto;
 }
 .btnbuymodal {
 	float: right;

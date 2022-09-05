@@ -11,6 +11,7 @@ export default createStore({
     products: [],
     allProducts: [],
     product: null,
+    promotionalProducts: [],
     cart: []
   },
   mutations: {
@@ -45,10 +46,20 @@ export default createStore({
       state.loadingProduct = true;
       axios.get('https://fakestoreapi.com/products/'+id)
       .then((response) => {
-        console.log(response);
         state.product=response.data;
         this.dispatch('selCategory', state.product.category)
         state.loadingProduct = false;
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    },
+
+    async loadPromoProduct({ state }) {
+      await axios.get('https://fakestoreapi.com/products/'+Math.floor(Math.random()*(19-0+1)+0))
+      .then((response) => {
+        if(state.promotionalProducts.length >= 3) state.promotionalProducts = [];
+        state.promotionalProducts.push(response.data);
       })
       .catch((error) => {
         console.log(error);

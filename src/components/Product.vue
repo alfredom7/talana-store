@@ -33,7 +33,7 @@
 						<div class="card-body">
 							<div class="product-condition">Nuevo | 9 vendidos</div>
 							<div class="product-title">{{ product.title }}</div>
-							<div class="product-price">{{ product.price }} <span>22% OFF</span></div>
+							<div class="product-price">$ {{ product.price }} <span>22% OFF</span></div>
 							<div class="product-income">
 								<i class="fa-solid fa-motorcycle"></i> Llega gratis <b>entre el miércoles y el
 									jueves</b>
@@ -97,9 +97,19 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="card-footer text-muted">
-				2 days ago
+				<div class="card-footer text-muted">
+					<div class="product-description-title">Productos promocionados</div>
+					<div class="card-group" v-if="promotionalProducts && promotionalProducts.length > 0">
+						<div class="card" v-for="product in promotionalProducts" :key="product.id" style="cursor: pointer;">
+							<img v-on:click="goProduct(product.id)" :src="product.image" class="card-img-top promoimg" alt="Image product">
+							<div class="card-body">
+							<h5 class="card-title promoprice">$ {{ product.price }}</h5>
+							<p class="card-text promobene">Envio gratis</p>
+							<p class="card-text promotitle">{{ product.title }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="loading-container" v-else>
@@ -121,7 +131,7 @@ import store from '../store/index'
 export default {
 	data(){
 		return {
-			productId: null
+			productId: null,
 		}
 	},
 	store,
@@ -132,18 +142,30 @@ export default {
 		product () {
 			return store.state.product
 		},
+		products () {
+			return store.state.products
+		},
+		promotionalProducts () {
+			return store.state.promotionalProducts
+		},
 		loadingProduct () {
 			return store.state.loadingProduct
 		}
 	},
 	created(){
 		this.productId = this.$route.params.id;
+		this.$store.dispatch('loadProduct', this.productId);
+		this.$store.dispatch('loadPromoProduct')
+		this.$store.dispatch('loadPromoProduct')
+		this.$store.dispatch('loadPromoProduct')
+		
 	},
 	mounted(){
-		this.$store.dispatch('loadProduct', this.productId);
 	},
 	methods: {
-
+		goProduct(id){
+			window.location.href = `/product/${id}`;
+		}
 	}
 }
 </script>
@@ -252,7 +274,7 @@ div span.deliverypro {
 }
 .productimage{
 	width: 100%;
-	max-height: 450px;
+	max-height: 400px;
 	object-fit: contain;
 }
 @media(max-width: 576px){
@@ -368,5 +390,35 @@ button.productbuybtn:hover{
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
     margin-top: 4px;
+}
+.promoimg{
+	height: 200px;
+    width: 200px !important;
+	margin: 0 auto;
+	padding: 20px;
+	object-fit: contain;
+}
+.promoprice{
+	font-size: 24px;
+    line-height: 1em;
+	font-weight: 400;
+	color: #333;
+}
+.promobene{
+	font-size: 14px;
+	color: #00a650 !important;
+	font-weight: 400;
+	margin-bottom: 5px;
+}
+.promotitle{
+	color: rgba(0,0,0,.8);
+    font-weight: 400;
+    margin-bottom: 0;
+    font-size: 14px;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 </style>
